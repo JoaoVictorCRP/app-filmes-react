@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native'
 import { _View } from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CadastroScreen from './CadastroScreen.jsx';
 
 const LoginScreen = () => {
     const [ email, setEmail ] = useState("")
@@ -47,7 +48,7 @@ const LoginScreen = () => {
 
             <TouchableOpacity
                 style={styles.button}
-                onPress={handleLogin}>
+                onPress={handleCadastro}>
                 <Text style={styles.buttonText}>Cadastrar</Text>
             </TouchableOpacity>
         </View>
@@ -84,6 +85,6 @@ const styles = StyleSheet.create({
       fontWeight: "bold",
       fontSize: 18,
     },
-  });
+});
 
 export default LoginScreen
