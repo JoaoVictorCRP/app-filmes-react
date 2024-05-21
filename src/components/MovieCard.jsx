@@ -11,7 +11,8 @@ export default function MovieCard({ filme }){
                 style={StyleSheet.Image}
                 source={{ uri: `https://image.tmdb.org/t/p/w500/${filme.poster_path}`}}
             />
-            <Text>Título: `${filme.title}`</Text>
+            <Text>Titulo: {filme.title}</Text>
+            <Text>Nota: {filme.vote_average}</Text>
         </View>
     )
 }
