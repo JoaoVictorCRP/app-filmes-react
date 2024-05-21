@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from './src/screens/LoginScreen.jsx';
 import CadastroScreen from './src/screens/CadastroScreen.jsx';
+import HomeScreen from './src/screens/HomeScreen.jsx';
 
 const Stack = createStackNavigator();
 
@@ -24,6 +25,12 @@ export default function App(){
           headerStyle: { backgroundColor: "#B81D24" },
           headerTitleStyle: {fontWeight: "bold" }
          }}/>
+         <Stack.Screen name="Homescreen" component={ HomeScreen} options={{
+          title: 'Página Principal',
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "#B81D24" },
+          headerTitleStyle: {fontWeight: "bold" }
+         }} />
       </Stack.Navigator>
     </NavigationContainer>
   )

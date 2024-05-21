@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import { useNavigation } from '@react-navigation/native'
 import { _View } from 'react-native'
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CadastroScreen from './CadastroScreen.jsx';
 
 const LoginScreen = () => {
     const [ email, setEmail ] = useState("")
@@ -22,6 +21,10 @@ const LoginScreen = () => {
         if(userJson.email === email && userJson.password === password){
             navigation.navigate('Homescreen')
         }
+    }
+
+    const handleCadastro = () => {
+        navigation.navigate("Cadastro");
     }
 
 

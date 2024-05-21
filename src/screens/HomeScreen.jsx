@@ -1,5 +1,5 @@
 import React, {useState, useEffect } from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { View, FlatList, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import MovieCard from '../components/MovieCard';
 import moviesApi from '../services/moviesApi';
@@ -20,39 +20,58 @@ export default function HomeScreen({ navigation }){
 
                 setFilmes((filmes) => [...filmes, ...response.data.results]); // Pegando tudo oq vier de response.
             })
+            .catch((error) => {
+              console.log(error)
+            })
         }    
-
-        
     });
+
+    // Filtro de busca
+    const filteredMovies = filmes.filter((filme) => 
+      filme.title.toLowerCase().includes(search.toLowerCase())
+    )
+
+    return(
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder='Pesquisar'
+          value={search}
+          onChangeText={setSearch}
+        />
+        <FlatList
+          data={filteredMovies}
+          keyExtractor={(filme, index) => `${filme.id}-${index}`}
+          renderItem={ ({item}) => (
+            <TouchableOpacity // Botão de detalhes do filme
+              onPress={ () => 
+                navigation.navigate("DetalhesFilme", {
+                  title: item.title,
+                  poster_path: item.poster_path
+                })
+              }>
+                <MovieCard filme={item}/>
+              </TouchableOpacity>
+          )}
+        />
+      </View>
+    );
 };
 
+
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: "#221F1F",
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: "#ccc",
-      borderRadius: 5,
-      padding: 10,
-      marginVertical: 10,
-      width: "80%",
-      backgroundColor: "#fff",
-    },
-    button: {
-      backgroundColor: "#e50914",
-      borderRadius: 5,
-      padding: 10,
-      width: "80%",
-      alignItems: "center",
-      marginBottom: 10,
-    },
-    buttonText: {
-      color: "#fff",
-      fontWeight: "bold",
-      fontSize: 18,
-    },
+  input: {
+    marginTop: 15,
+    borderRadius: 10,
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+    borderColor: "#c0c0c0",
+    backgroundColor: "#fff",
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#292F33",
+  },
 });

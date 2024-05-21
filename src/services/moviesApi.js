@@ -6,6 +6,6 @@ const moviesApi = axios.create({
         api_key: process.env.API_KEY,
         language: "pt-BR",
     }
-})
+});
 
 export default moviesApi
