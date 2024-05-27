@@ -1,6 +1,5 @@
 import React, {useState, useEffect } from 'react'
 import { View, FlatList, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
 import MovieCard from '../components/MovieCard';
 import moviesApi from '../services/moviesApi';
 
@@ -11,7 +10,7 @@ export default function HomeScreen({ navigation }){
 
     useEffect(() => {
         for(let i=1; i<=5; i++){
-            moviesApi.get(`movie/popular/${moviesApi.defaults.params.api_key}&${moviesApi.defaults.params.language}&page=${i}`)
+            moviesApi.get(`movie/popular?${moviesApi.defaults.params.api_key}&${moviesApi.defaults.params.language}&page=${i}`)
             // como se fosse: https://api.themoviedb.org/3/movie/popular
             .then((response) => {
                 response.data.results.map((filme) => {

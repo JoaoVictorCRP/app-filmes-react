@@ -8,12 +8,15 @@ export default function MovieCard({ filme }) {
     return(
         <View style={styles.container}>
             <Image 
-                style={styles.Image}
-                source={{ uri: `https://image.tmdb.org/t/p/w500/${filme.poster_path}`}}
+                style={styles.image}
+                source={{ uri: `https://image.tmdb.org/t/p/w500${filme.poster_path}`}}
             />
-            <Text>Titulo: {filme.title}</Text>
-            <Text>Nota: {filme.vote_average}</Text>
-            <Text>Lançamento: {dataFormata}</Text>
+            <Text style={styles.title}>Titulo: {filme.title}</Text>
+            <Text style={styles.vote_average}> Nota: {filme.vote_average}</Text>
+            <Text style={styles.release_date}>Lançamento: {dataFormata}</Text>
+            <Text numberOfLines={1} style={styles.overview}>
+              Sinopse: {filme.overview}
+            </Text>
         </View>
     )
 }
